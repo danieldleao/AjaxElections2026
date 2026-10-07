@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajax Ward 3 Progressive Voter Guide (2026 Municipal Election)</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d',
+            },
+            labour: {
+              50: '#fef2f2',
+              100: '#fee2e2',
+              600: '#dc2626',
+              700: '#b91c1c',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Print specific optimization to fit pocket cheat sheet onto 1 clean page */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printable-slip-wrapper, #printable-slip-wrapper * {
+        visibility: visible;
+      }
+      #printable-slip-wrapper {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0.5in;
+        border: 2px dashed #000 !important;
+        box-shadow: none !important;
+        background: white !important;
+        color: black !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+    .badge-glow {
+      box-shadow: 0 0 15px -3px rgba(22, 163, 74, 0.4);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen">
+
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-slate-900 text-brand-500 flex items-center justify-center font-black text-xl shadow-md">
+          A3
+        </div>
+        <div>
+          <span class="text-sm font-extrabold uppercase tracking-wider text-slate-900 block leading-tight">Ajax Ward 3</span>
+          <span class="text-xs font-semibold text-emerald-700 block">Progressive Voter Guide 2026</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600">
+        <a href="#slate-dashboard" class="hover:text-emerald-700 transition">Top Slate</a>
+        <a href="#mayor-race" class="hover:text-emerald-700 transition">Mayor</a>
+        <a href="#regional-race" class="hover:text-emerald-700 transition">Ward 3 Regional</a>
+        <a href="#local-race" class="hover:text-emerald-700 transition">Ward 3 Local</a>
+        <a href="#trustee-race" class="hover:text-emerald-700 transition">School Trustees</a>
+        <a href="#ballot-builder" class="hover:text-emerald-700 transition">Pocket Ballot</a>
+        <a href="#civic-realities" class="hover:text-emerald-700 transition">Civic Realities</a>
+      </nav>
+
+      <div class="flex items-center space-x-3">
+        <a href="#ballot-builder" class="inline-flex items-center px-4 py-2 text-xs font-bold uppercase tracking-wider bg-emerald-600 text-white rounded-lg shadow-sm hover:bg-emerald-700 transition">
+          Build My Ballot
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800 text-white pt-12 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden no-print">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    
+    <div class="max-w-5xl mx-auto relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs font-semibold tracking-wide mb-6">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        Town of Ajax &bull; Ward 3 &bull; Municipal & School Board Elections
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-tight">
+        Independent Progressive &amp; Labour-Aligned Voter Guide
+      </h1>
+      
+      <p class="mt-4 text-base sm:text-lg text-slate-300 max-w-3xl mx-auto font-normal">
+        Evidence-based candidate evaluations prioritizing <span class="text-emerald-300 font-semibold">housing decommodification</span>, <span class="text-emerald-300 font-semibold">public services over austerity</span>, <span class="text-emerald-300 font-semibold">workers' rights</span>, and resisting private developer dominance.
+      </p>
+
+      <!-- Voting Period & Live Info Box -->
+      <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto text-left">
+        <div class="bg-slate-800/80 border border-slate-700/80 p-4 rounded-xl shadow-lg backdrop-blur">
+          <div class="text-xs uppercase tracking-wider text-slate-400 font-bold mb-1">Voting Method</div>
+          <div class="text-sm font-semibold text-white flex items-center gap-2">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+            Internet &amp; Telephone 24/7
+          </div>
+          <div class="text-xs text-slate-400 mt-1">Use PIN from your Voter Info Letter</div>
+        </div>
+
+        <div class="bg-slate-800/80 border border-slate-700/80 p-4 rounded-xl shadow-lg backdrop-blur">
+          <div class="text-xs uppercase tracking-wider text-slate-400 font-bold mb-1">Voting Window</div>
+          <div class="text-sm font-semibold text-white flex items-center gap-2">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            Oct 19 (10 AM) &ndash; Oct 26 (8 PM)
+          </div>
+          <div class="text-xs text-slate-400 mt-1">Cast anytime during the 8-day open window</div>
+        </div>
+
+        <div class="bg-slate-800/80 border border-slate-700/80 p-4 rounded-xl shadow-lg backdrop-blur">
+          <div class="text-xs uppercase tracking-wider text-slate-400 font-bold mb-1">Ward 3 Geographic Scope</div>
+          <div class="text-sm font-semibold text-white flex items-center gap-2">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+            South Ajax / Waterfront
+          </div>
+          <div class="text-xs text-slate-400 mt-1">Includes Falby Court &amp; Lake Ontario shores</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Executive Summary Slate Dashboard -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow">
+    
+    <div id="slate-dashboard" class="mb-14 scroll-mt-20">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 pb-4 border-b border-slate-200 gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-emerald-700">Quick-Reference Slate</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Top Progressive Recommendations</h2>
+          <p class="text-sm text-slate-600 mt-1">Evaluated based on workers' rights, housing affordability, and resisting austerity.</p>
+        </div>
+        <button onclick="autoPopulateProgressiveSlate()" class="self-start md:self-auto inline-flex items-center gap-2 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-bold shadow transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          Load Slate Into Ballot Builder
+        </button>
+      </div>
+
+      <!-- Grid of Slate Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Mayor Card -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-emerald-500"></div>
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-700">Mayor (Town-wide)</span>
+              <span class="text-xs font-black px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">74 / 100</span>
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900">Carion Fenn</h3>
+            <p class="text-xs font-medium text-emerald-700 mt-0.5">Grassroots Community Advocate</p>
+            <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+              Outspoken critic of corporate developer money corrupting municipal policy. Prioritizes healthcare equity, poverty elimination, and community health.
+            </p>
+          </div>
+          <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-slate-500">Pick 1 on ballot</span>
+            <a href="#mayor-race" class="font-bold text-emerald-700 hover:underline">Full Analysis &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Regional Councillor Card -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-emerald-500"></div>
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-700">Ward 3 Regional</span>
+              <span class="text-xs font-black px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">71 / 100</span>
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900">Stephanie Ashton</h3>
+            <p class="text-xs font-medium text-emerald-700 mt-0.5">Ecological &amp; Housing Advocate</p>
+            <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+              Champions the <strong>"Housing First"</strong> framework. Demands mandatory affordable housing quotas in regional developments and climate accountability.
+            </p>
+          </div>
+          <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-slate-500">Pick 1 on ballot</span>
+            <a href="#regional-race" class="font-bold text-emerald-700 hover:underline">Full Analysis &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Local Councillor Card -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-emerald-500"></div>
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-700">Ward 3 Local</span>
+              <span class="text-xs font-black px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">65 / 100</span>
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900">Muzammil Yazdani</h3>
+            <p class="text-xs font-medium text-emerald-700 mt-0.5">Grassroots Tenant Organizer</p>
+            <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+              Direct engagement with working-class renters at high-density complexes (Falby Court). Focuses on tenant dignity, park equity, and neighborhood inclusion.
+            </p>
+          </div>
+          <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-slate-500">Pick 1 on ballot</span>
+            <a href="#local-race" class="font-bold text-emerald-700 hover:underline">Full Analysis &rarr;</a>
+          </div>
+        </div>
+
+        <!-- School Board Trustee Card -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-red-600"></div>
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-red-50 text-red-700">DDSB Public Trustee</span>
+              <span class="text-xs font-black px-2 py-0.5 rounded bg-red-100 text-red-800">94 &amp; 91 / 100</span>
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900">Macnamara &amp; Hussain</h3>
+            <div class="mt-1 flex items-center gap-1.5 text-xs font-bold text-red-700">
+              <svg class="w-3.5 h-3.5 text-red-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              DRLC Labour Council Endorsed
+            </div>
+            <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+              Official union-backed slate. Full defense of teachers/education workers, HVAC school repairs, mental health, and resisting conservative austerity.
+            </p>
+          </div>
+          <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-slate-500">Pick UP TO 2 on ballot</span>
+            <a href="#trustee-race" class="font-bold text-red-700 hover:underline">Full Analysis &rarr;</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION 1: MAYOR OF AJAX -->
+    <section id="mayor-race" class="mb-16 scroll-mt-20">
+      <div class="border-b border-slate-200 pb-4 mb-6">
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-1 bg-slate-900 text-white rounded text-xs font-bold uppercase tracking-wider">Office 1</span>
+          <h2 class="text-2xl font-black text-slate-900">Mayor &bull; Town of Ajax</h2>
+        </div>
+        <p class="text-sm text-slate-600 mt-1">Elected town-wide. Represents Ajax on both Town Council and Durham Regional Council. (Choose 1 candidate)</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Carion Fenn -->
+        <div class="bg-white rounded-2xl border-2 border-emerald-500/60 p-6 shadow-sm relative flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 text-xs font-black uppercase">#1 Progressive Match</span>
+              <span class="text-base font-black text-slate-900">Score: 74/100</span>
+            </div>
+            <h3 class="text-2xl font-black text-slate-900">Carion Fenn</h3>
+            <p class="text-xs font-bold text-slate-500 mb-4">Grassroots Organizer &bull; Healthcare Equity Advocate</p>
+
+            <div class="space-y-3 text-xs leading-relaxed">
+              <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-100">
+                <div class="font-bold text-emerald-900 mb-1 flex items-center gap-1.5">
+                  <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                  Strongest Alignment:
+                </div>
+                <p class="text-emerald-800">
+                  Directly criticizes corporate real estate developer donations influencing Durham local politics. Focuses on social determinants of health, poverty reduction, and dignity for unhoused residents.
+                </p>
+              </div>
+
+              <div class="p-3 bg-amber-50 rounded-xl border border-amber-100">
+                <div class="font-bold text-amber-900 mb-1 flex items-center gap-1.5">
+                  <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                  Limitation / Concern:
+                </div>
+                <p class="text-amber-800">
+                  Proposes strong community care principles but lacks a detailed municipal tax mechanism to finance municipal-owned social housing independent of province.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+            <strong>Key Record:</strong> Founder of Carion Fenn Foundation; patient advocate; persistent voice against municipal developer dominance.
+          </div>
+        </div>
+
+        <!-- Marilyn Crawford -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-bold uppercase">#2 Institutional / Center</span>
+              <span class="text-base font-black text-slate-700">Score: 48/100</span>
+            </div>
+            <h3 class="text-2xl font-black text-slate-900">Marilyn Crawford</h3>
+            <p class="text-xs font-bold text-slate-500 mb-4">Regional Councillor (Ward 1) &bull; Incumbent Politician</p>
+
+            <div class="space-y-3 text-xs leading-relaxed">
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                <div class="font-bold text-slate-800 mb-1">Stance &amp; Record:</div>
+                <p class="text-slate-600">
+                  Reliably protects existing municipal infrastructure and civic upkeep. Long-time public servant who manages status quo operations steadily.
+                </p>
+              </div>
+
+              <div class="p-3 bg-rose-50 rounded-xl border border-rose-100">
+                <div class="font-bold text-rose-900 mb-1">Significant Divergence:</div>
+                <p class="text-rose-800">
+                  Operates within conventional market-driven developer planning frameworks. Heavy emphasis on traditional policing and private commercial expansion rather than systemic anti-poverty reform.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+            <strong>Key Record:</strong> Multi-term Regional Councillor; backed standard planning approvals and commercial zone strategies.
+          </div>
+        </div>
+
+        <!-- Ashmeed Khan -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-bold uppercase">#3 Fiscally Conservative</span>
+              <span class="text-base font-black text-slate-700">Score: 42/100</span>
+            </div>
+            <h3 class="text-2xl font-black text-slate-900">Ashmeed Khan</h3>
+            <p class="text-xs font-bold text-slate-500 mb-4">Former Ward 2 Councillor &bull; Business Advocate</p>
+
+            <div class="space-y-3 text-xs leading-relaxed">
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                <div class="font-bold text-slate-800 mb-1">Humanitarian Focus:</div>
+                <p class="text-slate-600">
+                  Active in community charity drives, local food banks, and autism awareness initiatives.
+                </p>
+              </div>
+
+              <div class="p-3 bg-rose-50 rounded-xl border border-rose-100">
+                <div class="font-bold text-rose-900 mb-1">Severe Austerity Concern:</div>
+                <p class="text-rose-800">
+                  As 2021 Ajax Budget Chair, championed keeping municipal tax increases under 1%. Sub-inflation tax freezes starve public transit and municipal services of vital funding.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+            <strong>Key Record:</strong> Delivered austerity-minded municipal budgets; emphasizes business deregulation and tax suppression.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: WARD 3 REGIONAL COUNCILLOR -->
+    <section id="regional-race" class="mb-16 scroll-mt-20">
+      <div class="border-b border-slate-200 pb-4 mb-6">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-1 bg-slate-900 text-white rounded text-xs font-bold uppercase tracking-wider">Office 2</span>
+            <h2 class="text-2xl font-black text-slate-900">Regional Councillor &bull; Ward 3</h2>
+          </div>
+          <span class="text-xs font-bold px-3 py-1 bg-amber-100 text-amber-900 rounded-full border border-amber-200">
+            Controls Regional Public Transit &amp; Subsidized Housing
+          </span>
+        </div>
+        <p class="text-sm text-slate-600 mt-1">Holds seats on both Town Council and Durham Regional Council. (Choose 1 candidate)</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Stephanie Ashton -->
+        <div class="bg-white rounded-2xl border-2 border-emerald-500/60 p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 text-xs font-black uppercase">#1 Progressive Match</span>
+              <span class="text-base font-black text-slate-900">Score: 71/100</span>
+            </div>
+            <h3 class="text-2xl font-black text-slate-900">Stephanie Ashton</h3>
+            <p class="text-xs font-bold text-slate-500 mb-4">Environmental Executive &bull; Housing First Advocate</p>
+
+            <div class="space-y-3 text-xs leading-relaxed">
+              <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-100">
+                <div class="font-bold text-emerald-900 mb-1 flex items-center gap-1.5">
+                  <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                  Core Alignment:
+                </div>
+                <p class="text-emerald-800">
+                  Explicitly endorses the <strong>"Housing First"</strong> principle. Demands mandatory affordable quotas in private development approvals, protects the Lake Ontario shoreline, and opposes sprawl.
+                </p>
+              </div>
+
+              <div class="p-3 bg-amber-50 rounded-xl border border-amber-100">
+                <div class="font-bold text-amber-900 mb-1">Caveat:</div>
+                <p class="text-amber-800">
+                  Mentions standard municipal "efficiency reviews", though balances this with support for social infrastructure and transit investment.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+            <strong>Key Record:</strong> Co-Chair of <em>Mind Your Plastic</em>; environmental justice organizer; focus on high-density transit corridors.
+          </div>
+        </div>
+
+        <!-- Donna Edwards -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-bold uppercase">#2 Proven Public Defender</span>
+              <span class="text-base font-black text-slate-800">Score: 68/100</span>
+            </div>
+            <h3 class="text-2xl font-black text-slate-900">Donna Edwards</h3>
+            <p class="text-xs font-bold text-slate-500 mb-4">16-Yr Public Trustee &bull; Labour Relations Lead</p>
+
+            <div class="space-y-3 text-xs leading-relaxed">
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                <div class="font-bold text-slate-800 mb-1">Strengths:</div>
+                <p class="text-slate-600">
+                  Decades defending public assets. Outspoken defender of the Ajax Public Library. Extensive experience leading collective bargaining at the Ontario Public School Boards' Association.
+                </p>
+              </div>
+
+              <div class="p-3 bg-amber-50 rounded-xl border border-amber-100">
+                <div class="font-bold text-amber-900 mb-1">Fiscal Restraint Note:</div>
+                <p class="text-amber-800">
+                  Platform calls for auditing the Town's 2% capital infrastructure levy to rein in property tax increases, leaning slightly toward centrist fiscal restraint.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+            <strong>Key Record:</strong> Former DDSB Trustee (16 yrs); OPSBA Labour Negotiator; champion of public community spaces.
+          </div>
+        </div>
+
+        <!-- Rob Chopowick & Other Challengers -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-1 rounded bg-rose-50 text-rose-700 text-xs font-bold uppercase">#3 Austerity Concern</span>
+              <span class="text-base font-black text-slate-700">Score: 44/100</span>
+            </div>
+            <h3 class="text-2xl font-black text-slate-900">Rob Chopowick</h3>
+            <p class="text-xs font-bold text-slate-500 mb-4">Community Candidate &bull; Fiscal Conservative</p>
+
+            <div class="space-y-3 text-xs leading-relaxed">
+              <div class="p-3 bg-rose-50 rounded-xl border border-rose-100">
+                <div class="font-bold text-rose-900 mb-1">Labour &amp; Staffing Red Flag:</div>
+                <p class="text-rose-800">
+                  Campaign platform commits to a <strong>freeze on net-new municipal staffing positions</strong> in the 2027 budget. This directly attacks municipal union jobs and reduces community service capacity.
+                </p>
+              </div>
+              <div class="text-xs text-slate-500 italic">
+                *Other Ward 3 Regional candidates include Lynn MacDonald (corporate MBA fiscal focus), Errol Massiah (tax cuts), and Angie Papas (grassroots charity).
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+            <strong>Evaluation:</strong> Staffing freezes directly conflict with expanding public services and protecting workers.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: WARD 3 LOCAL COUNCILLOR -->
+    <section id="local-race" class="mb-16 scroll-mt-20">
+      <div class="border-b border-slate-200 pb-4 mb-6">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-1 bg-slate-900 text-white rounded text-xs font-bold uppercase tracking-wider">Office 3</span>
+            <h2 class="text-2xl font-black text-slate-900">Local Councillor &bull; Ward 3</h2>
+          </div>
+          <span class="text-xs font-bold px-3 py-1 bg-slate-100 text-slate-800 rounded-full border border-slate-200">
+            Controls Local Parks, Zoning Bylaws &amp; Community Centers
+          </span>
+        </div>
+        <p class="text-sm text-slate-600 mt-1">Serves exclusively on Ajax Town Council. (Choose 1 candidate)</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Muzammil Yazdani -->
+        <div class="bg-white rounded-2xl border-2 border-emerald-500/60 p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 text-xs font-black uppercase">#1 Progressive Match</span>
+              <span class="text-base font-black text-slate-900">Score: 65/100</span>
+            </div>
+            <h3 class="text-2xl font-black text-slate-900">Muzammil Yazdani</h3>
+            <p class="text-xs font-bold text-slate-500 mb-4">Grassroots Organizer &bull; Tenant Advocate</p>
+
+            <div class="space-y-3 text-xs leading-relaxed">
+              <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-100">
+                <div class="font-bold text-emerald-900 mb-1 flex items-center gap-1.5">
+                  <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                  Working-Class Engagement:
+                </div>
+                <p class="text-emerald-800">
+                  Focuses outreach heavily on working-class apartment complexes (Falby Court). Prioritizes tenant dignity, safety, Truth &amp; Reconciliation, and equity for lower-income families.
+                </p>
+              </div>
+
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                <div class="font-bold text-slate-800 mb-1">Limitation:</div>
+                <p class="text-slate-600">
+                  Focuses on community listening and municipal responsiveness rather than a comprehensive structural socialist land-use plan.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+            <strong>Key Record:</strong> Deep grassroots canvassing in dense rental blocks often ignored by typical suburban campaigns.
+          </div>
+        </div>
+
+        <!-- Bhanuteja Somarouthu -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-bold uppercase">#2 Commons Defender</span>
+              <span class="text-base font-black text-slate-800">Score: 62/100</span>
+            </div>
+            <h3 class="text-2xl font-black text-slate-900">Bhanuteja Somarouthu</h3>
+            <p class="text-xs font-bold text-slate-500 mb-4">College Professor &bull; Public Infrastructure Advocate</p>
+
+            <div class="space-y-3 text-xs leading-relaxed">
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                <div class="font-bold text-slate-800 mb-1">Focus on Commons:</div>
+                <p class="text-slate-600">
+                  Platform treats public waterfront, community parks, and pedestrian safety as vital shared public wealth requiring continuous civic care.
+                </p>
+              </div>
+
+              <div class="p-3 bg-amber-50 rounded-xl border border-amber-100">
+                <div class="font-bold text-amber-900 mb-1">Tax Restraint Rhetoric:</div>
+                <p class="text-amber-800">
+                  Uses conservative fiscal language ("Spend like it's your own money"), which can constrain municipal investments in social programs.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+            <strong>Key Record:</strong> Academic background in education and data; strong commitment to neighborhood transparency.
+          </div>
+        </div>
+
+        <!-- Nick Papalambropoulos & Lisa Patel Context -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-bold uppercase">#3 Mixed Alignment</span>
+              <span class="text-base font-black text-slate-700">Score: 51/100</span>
+            </div>
+            <h3 class="text-2xl font-black text-slate-900">Nick Papalambropoulos</h3>
+            <p class="text-xs font-bold text-slate-500 mb-4">Contractor &bull; Senior Non-Profit Endorsed</p>
+
+            <div class="space-y-3 text-xs leading-relaxed">
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                <div class="font-bold text-slate-800 mb-1">Social Care Endorsement:</div>
+                <p class="text-slate-600">
+                  Endorsed by Dr. Patricia Spindel (Seniors for Social Action ON) for supporting non-profit assisted living for vulnerable seniors and disabled people.
+                </p>
+              </div>
+
+              <div class="p-3 bg-rose-50 rounded-xl border border-rose-100">
+                <div class="font-bold text-rose-900 mb-1">Note on Lisa Patel (Opponent):</div>
+                <p class="text-rose-800">
+                  Candidate Lisa Patel is the former President of the <em>Toronto Regional Real Estate Board (TRREB)</em>. Her deep corporate ties to real estate sales directly conflict with decommodification of housing.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+            <strong>Summary:</strong> Papalambropoulos offers strong non-profit senior housing support, though business-oriented.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 4: SCHOOL BOARD TRUSTEES -->
+    <section id="trustee-race" class="mb-16 scroll-mt-20">
+      <div class="border-b border-slate-200 pb-4 mb-6">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-1 bg-red-600 text-white rounded text-xs font-bold uppercase tracking-wider">Office 4</span>
+            <h2 class="text-2xl font-black text-slate-900">School Board Trustees</h2>
+          </div>
+          <span class="text-xs font-bold px-3 py-1 bg-red-100 text-red-900 rounded-full border border-red-200">
+            Important: You Elect TWO (2) Trustees on Your Ballot
+          </span>
+        </div>
+        <p class="text-sm text-slate-600 mt-1">Vote according to your school board tax support designation. (Choose up to 2 candidates)</p>
+      </div>
+
+      <!-- Tab Buttons for Public vs Catholic Board -->
+      <div class="flex gap-2 mb-6">
+        <button id="btn-tab-ddsb" onclick="switchTrusteeTab('ddsb')" class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-slate-900 text-white shadow">
+          Durham District (English Public - DDSB)
+        </button>
+        <button id="btn-tab-dcdsb" onclick="switchTrusteeTab('dcdsb')" class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-slate-200 text-slate-700 hover:bg-slate-300">
+          Durham Catholic (English Catholic - DCDSB)
+        </button>
+      </div>
+
+      <!-- DDSB Panel -->
+      <div id="panel-ddsb" class="block">
+        <div class="bg-red-50/60 border border-red-200 rounded-2xl p-4 mb-6 flex items-center gap-3 text-xs text-red-900">
+          <svg class="w-6 h-6 text-red-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+          <div>
+            <strong>Labour Council Endorsement Slate:</strong> Both Michelle Macnamara and Zubair Hussain carry the official endorsement of the <strong>Durham Region Labour Council (DRLC)</strong>. They represent the premier progressive vote in Ajax.
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- Michelle Macnamara -->
+          <div class="bg-white rounded-2xl border-2 border-red-500 p-6 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-1 rounded bg-red-100 text-red-800 text-xs font-black uppercase">Top Labour Pick</span>
+                <span class="text-base font-black text-slate-900">Score: 94/100</span>
+              </div>
+              <h3 class="text-2xl font-black text-slate-900">Michelle Macnamara</h3>
+              <p class="text-xs font-bold text-red-700 mb-4 flex items-center gap-1">
+                <span>&starf; Official DRLC Labour Endorsement</span>
+              </p>
+              
+              <div class="p-3 bg-red-50/50 rounded-xl border border-red-100 text-xs space-y-2">
+                <p><strong>Union Solidarity:</strong> Steadfast defender of teachers, EAs, and education workers. Completely opposes public school privatization, vouchers, and conservative culture-war budget cuts.</p>
+                <p><strong>Equity:</strong> Advocates for safe, inclusive classrooms, modern evidence-based curricula, and robust special education funding.</p>
+              </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+              Endorsed by organized labour; committed to resisting provincial cuts.
+            </div>
+          </div>
+
+          <!-- Zubair Hussain -->
+          <div class="bg-white rounded-2xl border-2 border-red-500 p-6 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-1 rounded bg-red-100 text-red-800 text-xs font-black uppercase">Top Labour Pick</span>
+                <span class="text-base font-black text-slate-900">Score: 91/100</span>
+              </div>
+              <h3 class="text-2xl font-black text-slate-900">Zubair Hussain</h3>
+              <p class="text-xs font-bold text-red-700 mb-4 flex items-center gap-1">
+                <span>&starf; DRLC &amp; Donna Edwards Endorsement</span>
+              </p>
+              
+              <div class="p-3 bg-red-50/50 rounded-xl border border-red-100 text-xs space-y-2">
+                <p><strong>Infrastructure Investment:</strong> Demands urgent funding for school repairs, HVAC and air conditioning installations in older Ajax schools, and mental health resources.</p>
+                <p><strong>Special Education:</strong> Strong proponent of dedicated EA staffing to support high-needs learners and lower worker burnout.</p>
+              </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+              Endorsed by outgoing veteran trustee Donna Edwards and Labour Council.
+            </div>
+          </div>
+
+          <!-- Mayoorey Murugathasan & Others -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-bold uppercase">Progressive Independent</span>
+                <span class="text-base font-black text-slate-700">Score: 58/100</span>
+              </div>
+              <h3 class="text-2xl font-black text-slate-900">Mayoorey Murugathasan</h3>
+              <p class="text-xs font-bold text-slate-500 mb-4">Youth &amp; Mental Health Advocate</p>
+              
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs space-y-2">
+                <p><strong>Platform:</strong> Focuses on student mental health, anti-racism, student wellbeing, and parent engagement.</p>
+                <p><strong>Concern:</strong> Lacks explicit labour union commitments and strategies to fight provincial funding reductions.</p>
+              </div>
+              <div class="text-xs text-slate-500 mt-2 italic">
+                *Note: Candidates Kashif Baig and Waqqas Syed run on "Back to Basics" and fiscal reduction platforms that mirror conservative agendas.
+              </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+              Solid community equity focus, but Macnamara and Hussain remain the union picks.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DCDSB Catholic Panel (Hidden by default) -->
+      <div id="panel-dcdsb" class="hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- Monique Forster -->
+          <div class="bg-white rounded-2xl border-2 border-emerald-500/60 p-6 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 text-xs font-black uppercase">#1 Catholic Pick</span>
+                <span class="text-base font-black text-slate-900">Score: 70/100</span>
+              </div>
+              <h3 class="text-2xl font-black text-slate-900">Monique Forster</h3>
+              <p class="text-xs font-bold text-slate-500 mb-4">Incumbent Trustee &bull; Former Board Chair</p>
+              
+              <div class="p-3 bg-emerald-50/50 rounded-xl border border-emerald-100 text-xs space-y-2">
+                <p><strong>Equity Champion:</strong> Resisted social conservative attempts to dismantle student inclusion initiatives; champions special education funding and student wellbeing.</p>
+              </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+              Experienced progressive defender on the Catholic Board.
+            </div>
+          </div>
+
+          <!-- Marisa Hall -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-bold uppercase">#2 Catholic Pick</span>
+                <span class="text-base font-black text-slate-800">Score: 67/100</span>
+              </div>
+              <h3 class="text-2xl font-black text-slate-900">Marisa Hall</h3>
+              <p class="text-xs font-bold text-slate-500 mb-4">Incumbent Trustee &bull; Special Needs Focus</p>
+              
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs space-y-2">
+                <p><strong>Platform:</strong> Focuses on anti-bullying programs, student mental health, and preserving special education staffing.</p>
+              </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+              Reliable advocate for student supports and classroom equity.
+            </div>
+          </div>
+
+          <!-- Other Challengers -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-bold uppercase">Challenger</span>
+                <span class="text-base font-black text-slate-700">Score: 52/100</span>
+              </div>
+              <h3 class="text-2xl font-black text-slate-900">Joanne Hildyard</h3>
+              <p class="text-xs font-bold text-slate-500 mb-4">Catholic Parent Advocate</p>
+              
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs space-y-2">
+                <p>Platform leans toward traditional Catholic teachings and parental oversight rather than progressive systemic education funding fights.</p>
+              </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+              Incumbents Forster &amp; Hall remain the equity-oriented choices.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: INTERACTIVE BALLOT BUILDER & POCKET GUIDE -->
+    <section id="ballot-builder" class="mb-16 scroll-mt-20 no-print">
+      <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-6 sm:p-10 text-white shadow-xl">
+        
+        <div class="max-w-3xl mb-8">
+          <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wider border border-emerald-500/30">
+            Interactive Pocket Guide
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black text-white mt-3 tracking-tight">
+            Build Your Ward 3 Voter Cheat Sheet
+          </h2>
+          <p class="text-slate-300 text-sm mt-2">
+            Select your preferred choices below. You can auto-fill the recommended progressive slate or customize it, then print or copy your pocket slip to have beside you when voting online or over the telephone.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- Left Column: Checkbox Selectors (7 Cols) -->
+          <div class="lg:col-span-7 space-y-6">
+            
+            <div class="flex items-center justify-between pb-3 border-b border-slate-700">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Custom Selection Controls</span>
+              <div class="flex gap-2">
+                <button onclick="autoPopulateProgressiveSlate()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-md text-xs font-bold transition">
+                  Load Top Slate
+                </button>
+                <button onclick="resetBallot()" class="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-slate-300 rounded-md text-xs font-semibold transition">
+                  Clear All
+                </button>
+              </div>
+            </div>
+
+            <!-- Race 1: Mayor Selector -->
+            <div class="bg-slate-800/80 border border-slate-700 p-4 rounded-xl">
+              <div class="flex justify-between items-center mb-2">
+                <label class="text-xs font-extrabold uppercase text-emerald-400 tracking-wide">1. Mayor (Vote for 1)</label>
+                <span class="text-[10px] text-slate-400">Town-wide</span>
+              </div>
+              <div class="space-y-2 text-xs">
+                <label class="flex items-center space-x-3 p-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 cursor-pointer transition">
+                  <input type="radio" name="ballot-mayor" value="Carion Fenn (Mayor)" onchange="updateBallotSlip()" class="text-emerald-500 focus:ring-emerald-500 h-4 w-4">
+                  <div class="flex-grow flex justify-between items-center">
+                    <span class="font-bold text-white">Carion Fenn</span>
+                    <span class="text-[10px] font-semibold text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">Top Progressive (74)</span>
+                  </div>
+                </label>
+                <label class="flex items-center space-x-3 p-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 cursor-pointer transition">
+                  <input type="radio" name="ballot-mayor" value="Marilyn Crawford (Mayor)" onchange="updateBallotSlip()" class="text-emerald-500 focus:ring-emerald-500 h-4 w-4">
+                  <div class="flex-grow flex justify-between items-center">
+                    <span class="font-medium text-slate-200">Marilyn Crawford</span>
+                    <span class="text-[10px] text-slate-400">Centrist / Status Quo (48)</span>
+                  </div>
+                </label>
+                <label class="flex items-center space-x-3 p-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 cursor-pointer transition">
+                  <input type="radio" name="ballot-mayor" value="Ashmeed Khan (Mayor)" onchange="updateBallotSlip()" class="text-emerald-500 focus:ring-emerald-500 h-4 w-4">
+                  <div class="flex-grow flex justify-between items-center">
+                    <span class="font-medium text-slate-200">Ashmeed Khan</span>
+                    <span class="text-[10px] text-slate-400">Fiscal Conservative (42)</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Race 2: Regional Councillor Selector -->
+            <div class="bg-slate-800/80 border border-slate-700 p-4 rounded-xl">
+              <div class="flex justify-between items-center mb-2">
+                <label class="text-xs font-extrabold uppercase text-emerald-400 tracking-wide">2. Ward 3 Regional Councillor (Vote for 1)</label>
+                <span class="text-[10px] text-slate-400">Ajax &amp; Durham Region</span>
+              </div>
+              <div class="space-y-2 text-xs">
+                <label class="flex items-center space-x-3 p-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 cursor-pointer transition">
+                  <input type="radio" name="ballot-regional" value="Stephanie Ashton (Ward 3 Regional)" onchange="updateBallotSlip()" class="text-emerald-500 focus:ring-emerald-500 h-4 w-4">
+                  <div class="flex-grow flex justify-between items-center">
+                    <span class="font-bold text-white">Stephanie Ashton</span>
+                    <span class="text-[10px] font-semibold text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">Housing First (71)</span>
+                  </div>
+                </label>
+                <label class="flex items-center space-x-3 p-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 cursor-pointer transition">
+                  <input type="radio" name="ballot-regional" value="Donna Edwards (Ward 3 Regional)" onchange="updateBallotSlip()" class="text-emerald-500 focus:ring-emerald-500 h-4 w-4">
+                  <div class="flex-grow flex justify-between items-center">
+                    <span class="font-medium text-slate-200">Donna Edwards</span>
+                    <span class="text-[10px] text-slate-300">Public Defender / Labour Lead (68)</span>
+                  </div>
+                </label>
+                <label class="flex items-center space-x-3 p-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 cursor-pointer transition">
+                  <input type="radio" name="ballot-regional" value="Rob Chopowick (Ward 3 Regional)" onchange="updateBallotSlip()" class="text-emerald-500 focus:ring-emerald-500 h-4 w-4">
+                  <div class="flex-grow flex justify-between items-center">
+                    <span class="font-medium text-slate-200">Rob Chopowick</span>
+                    <span class="text-[10px] text-rose-300">Staffing Freeze (44)</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Race 3: Local Councillor Selector -->
+            <div class="bg-slate-800/80 border border-slate-700 p-4 rounded-xl">
+              <div class="flex justify-between items-center mb-2">
+                <label class="text-xs font-extrabold uppercase text-emerald-400 tracking-wide">3. Ward 3 Local Councillor (Vote for 1)</label>
+                <span class="text-[10px] text-slate-400">Town Council</span>
+              </div>
+              <div class="space-y-2 text-xs">
+                <label class="flex items-center space-x-3 p-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 cursor-pointer transition">
+                  <input type="radio" name="ballot-local" value="Muzammil Yazdani (Ward 3 Local)" onchange="updateBallotSlip()" class="text-emerald-500 focus:ring-emerald-500 h-4 w-4">
+                  <div class="flex-grow flex justify-between items-center">
+                    <span class="font-bold text-white">Muzammil Yazdani</span>
+                    <span class="text-[10px] font-semibold text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">Falby Tenant Outreach (65)</span>
+                  </div>
+                </label>
+                <label class="flex items-center space-x-3 p-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 cursor-pointer transition">
+                  <input type="radio" name="ballot-local" value="Bhanuteja Somarouthu (Ward 3 Local)" onchange="updateBallotSlip()" class="text-emerald-500 focus:ring-emerald-500 h-4 w-4">
+                  <div class="flex-grow flex justify-between items-center">
+                    <span class="font-medium text-slate-200">Bhanuteja (Bhanu) Somarouthu</span>
+                    <span class="text-[10px] text-slate-300">Commons &amp; Parks (62)</span>
+                  </div>
+                </label>
+                <label class="flex items-center space-x-3 p-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 cursor-pointer transition">
+                  <input type="radio" name="ballot-local" value="Nick Papalambropoulos (Ward 3 Local)" onchange="updateBallotSlip()" class="text-emerald-500 focus:ring-emerald-500 h-4 w-4">
+                  <div class="flex-grow flex justify-between items-center">
+                    <span class="font-medium text-slate-200">Nick Papalambropoulos</span>
+                    <span class="text-[10px] text-slate-300">Senior Non-Profit Endorsed (51)</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Race 4: School Trustee Selector (Check up to 2) -->
+            <div class="bg-slate-800/80 border border-slate-700 p-4 rounded-xl">
+              <div class="flex justify-between items-center mb-2">
+                <label class="text-xs font-extrabold uppercase text-red-400 tracking-wide">4. School Trustee (DDSB English Public - Vote up to 2)</label>
+                <span class="text-[10px] text-red-300 font-bold">Pick Up to 2</span>
+              </div>
+              <div class="space-y-2 text-xs">
+                <label class="flex items-center space-x-3 p-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 cursor-pointer transition">
+                  <input type="checkbox" name="ballot-trustee" value="Michelle Macnamara (DDSB Trustee)" onchange="limitTrusteeChecks(this); updateBallotSlip()" class="text-red-500 focus:ring-red-500 h-4 w-4 rounded">
+                  <div class="flex-grow flex justify-between items-center">
+                    <span class="font-bold text-white">Michelle Macnamara</span>
+                    <span class="text-[10px] font-bold text-red-300 bg-red-950 px-2 py-0.5 rounded border border-red-800">DRLC Labour Endorsed (94)</span>
+                  </div>
+                </label>
+                <label class="flex items-center space-x-3 p-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 cursor-pointer transition">
+                  <input type="checkbox" name="ballot-trustee" value="Zubair Hussain (DDSB Trustee)" onchange="limitTrusteeChecks(this); updateBallotSlip()" class="text-red-500 focus:ring-red-500 h-4 w-4 rounded">
+                  <div class="flex-grow flex justify-between items-center">
+                    <span class="font-bold text-white">Zubair Hussain</span>
+                    <span class="text-[10px] font-bold text-red-300 bg-red-950 px-2 py-0.5 rounded border border-red-800">DRLC Labour Endorsed (91)</span>
+                  </div>
+                </label>
+                <label class="flex items-center space-x-3 p-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 cursor-pointer transition">
+                  <input type="checkbox" name="ballot-trustee" value="Mayoorey Murugathasan (DDSB Trustee)" onchange="limitTrusteeChecks(this); updateBallotSlip()" class="text-red-500 focus:ring-red-500 h-4 w-4 rounded">
+                  <div class="flex-grow flex justify-between items-center">
+                    <span class="font-medium text-slate-200">Mayoorey Murugathasan</span>
+                    <span class="text-[10px] text-slate-400">Mental Health (58)</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Live Printable Pocket Slip (5 Cols) -->
+          <div class="lg:col-span-5 sticky top-20">
+            <div id="printable-slip-wrapper" class="bg-white text-slate-900 rounded-2xl p-6 shadow-2xl border-4 border-slate-900 relative">
+              <div class="flex items-center justify-between border-b-2 border-slate-900 pb-3 mb-4">
+                <div>
+                  <h4 class="text-base font-black uppercase tracking-tight text-slate-900">Voter Pocket Slip</h4>
+                  <p class="text-[11px] font-bold text-emerald-800">Town of Ajax &bull; Ward 3</p>
+                </div>
+                <div class="text-right">
+                  <span class="text-[10px] font-mono uppercase bg-slate-900 text-white px-2 py-0.5 rounded font-black">2026</span>
+                </div>
+              </div>
+
+              <!-- Live selections feed -->
+              <div class="space-y-4 my-4 text-xs font-mono">
+                <div>
+                  <div class="text-[10px] uppercase font-bold text-slate-500">Office: Mayor</div>
+                  <div id="slip-mayor" class="font-bold text-sm text-slate-900 mt-0.5 py-1 px-2 bg-slate-100 rounded border border-slate-200">
+                    -- Not Selected --
+                  </div>
+                </div>
+
+                <div>
+                  <div class="text-[10px] uppercase font-bold text-slate-500">Office: Ward 3 Regional Councillor</div>
+                  <div id="slip-regional" class="font-bold text-sm text-slate-900 mt-0.5 py-1 px-2 bg-slate-100 rounded border border-slate-200">
+                    -- Not Selected --
+                  </div>
+                </div>
+
+                <div>
+                  <div class="text-[10px] uppercase font-bold text-slate-500">Office: Ward 3 Local Councillor</div>
+                  <div id="slip-local" class="font-bold text-sm text-slate-900 mt-0.5 py-1 px-2 bg-slate-100 rounded border border-slate-200">
+                    -- Not Selected --
+                  </div>
+                </div>
+
+                <div>
+                  <div class="text-[10px] uppercase font-bold text-slate-500">Office: School Board Trustee (Max 2)</div>
+                  <div id="slip-trustee" class="font-bold text-sm text-slate-900 mt-0.5 py-1 px-2 bg-slate-100 rounded border border-slate-200 space-y-1">
+                    <div>-- Not Selected --</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="border-t-2 border-dashed border-slate-300 pt-3 text-[10px] text-slate-500 leading-tight">
+                <p><strong>Voting Dates:</strong> Oct 19 (10 AM) – Oct 26 (8 PM), 2026</p>
+                <p class="mt-0.5"><strong>Vote Online:</strong> elections.ajax.ca &bull; <strong>Phone:</strong> Check PIN letter</p>
+              </div>
+
+              <!-- Slip Actions -->
+              <div class="mt-6 flex flex-col gap-2 no-print">
+                <button onclick="window.print()" class="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-lg text-xs flex items-center justify-center gap-2 shadow transition">
+                  <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                  Print This Pocket Slip
+                </button>
+                <button onclick="copyBallotText()" class="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold rounded-lg text-xs flex items-center justify-center gap-1.5 transition">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                  Copy Choices To Clipboard
+                </button>
+                <div id="copy-feedback" class="text-center text-[11px] font-bold text-emerald-700 hidden">
+                  &check; Slate choices copied to clipboard!
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: CIVIC REALITIES & CAVEATS -->
+    <section id="civic-realities" class="mb-14 scroll-mt-20 no-print">
+      <div class="border-b border-slate-200 pb-4 mb-6">
+        <span class="text-xs font-bold uppercase tracking-widest text-slate-500">Critical Elector Education</span>
+        <h2 class="text-2xl font-black text-slate-900 tracking-tight">4 Things to Know Before Casting Your Ballot</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-black text-sm mb-3">
+            1
+          </div>
+          <h3 class="text-base font-extrabold text-slate-900 mb-1">Town vs. Regional Jurisdiction Over Housing</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            The Town of Ajax cannot independently expropriate land for public housing or impose rent control (which is governed provincially). In Durham Region, subsidized public housing, emergency shelters, and Durham Region Transit (DRT) are managed by the <strong>Regional Council</strong>. This is why the <strong>Ward 3 Regional Councillor</strong> race carries far greater weight for socialist housing priorities than the Local Councillor race.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-black text-sm mb-3">
+            2
+          </div>
+          <h3 class="text-base font-extrabold text-slate-900 mb-1">"Under-Voting" is Your Democratic Right</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            In Ontario municipal elections, you are <strong>never required</strong> to vote for all four offices. If you only feel confident about your Councillor picks, you can leave the Mayor or School Trustee races blank or click "Abstain". In Canadian voting, an under-vote will never spoil your ballot; your selected votes are counted with 100% validity.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-black text-sm mb-3">
+            3
+          </div>
+          <h3 class="text-base font-extrabold text-slate-900 mb-1">The Public School Trustee "Vote for Two" Rule</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Unlike municipal council seats where you select only one candidate, Ajax elects <strong>two (2) trustees</strong> to the Durham District School Board (DDSB) and Durham Catholic Board (DCDSB). You can vote for two candidates on the same ballot. The progressive labour slate features <strong>Michelle Macnamara</strong> AND <strong>Zubair Hussain</strong> to maximize public education defense.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-black text-sm mb-3">
+            4
+          </div>
+          <h3 class="text-base font-extrabold text-slate-900 mb-1">The Hidden Trap of "Tax &amp; Staffing Freezes"</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Many municipal candidates campaign on "holding the line on taxes" or "freezing municipal staff". From an anti-austerity perspective, persistent property tax freezes and staff freezes deplete public transit frequency, reduce library and recreation operating hours, and force municipalities to privatize public operations. Adequate public tax revenue is essential to sustain public infrastructure.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 text-xs no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 pb-8 border-b border-slate-800">
+        <div>
+          <span class="text-white font-black text-base block mb-2">Ajax Ward 3 Progressive Voter Guide</span>
+          <p class="text-slate-400 leading-relaxed">
+            Independent, non-commercial civic analysis published to evaluate candidate records against socialist, labour, and equity priorities.
+          </p>
+        </div>
+        <div>
+          <span class="text-white font-bold text-xs uppercase tracking-wider block mb-2">Official Resources</span>
+          <ul class="space-y-1.5">
+            <li><a href="https://elections.ajax.ca" target="_blank" rel="noopener" class="text-emerald-400 hover:underline">Town of Ajax Elections Portal</a></li>
+            <li><a href="https://voterlookup.ca" target="_blank" rel="noopener" class="text-emerald-400 hover:underline">MPAC VoterLookup.ca (Check School Support)</a></li>
+            <li><a href="https://durhamlabour.ca" target="_blank" rel="noopener" class="text-emerald-400 hover:underline">Durham Region Labour Council (DRLC)</a></li>
+          </ul>
+        </div>
+        <div>
+          <span class="text-white font-bold text-xs uppercase tracking-wider block mb-2">Methodology Note</span>
+          <p class="text-slate-400 leading-relaxed">
+            Rankings are determined by documented voting records, union labour endorsements, candidate platforms, and public policy statements.
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500">
+        <p>&copy; 2026 Ajax Civic Research. All candidate data verified from certified municipal filings.</p>
+        <p class="mt-2 sm:mt-0">Designed for mobile, tablet, and printable pocket use.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Script Logic -->
+  <script>
+    function switchTrusteeTab(type) {
+      const panelDdsb = document.getElementById('panel-ddsb');
+      const panelDcdsb = document.getElementById('panel-dcdsb');
+      const btnDdsb = document.getElementById('btn-tab-ddsb');
+      const btnDcdsb = document.getElementById('btn-tab-dcdsb');
+
+      if (type === 'ddsb') {
+        panelDdsb.classList.remove('hidden');
+        panelDcdsb.classList.add('hidden');
+        btnDdsb.className = "px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-slate-900 text-white shadow";
+        btnDcdsb.className = "px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-slate-200 text-slate-700 hover:bg-slate-300";
+      } else {
+        panelDdsb.classList.add('hidden');
+        panelDcdsb.classList.remove('hidden');
+        btnDcdsb.className = "px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-slate-900 text-white shadow";
+        btnDdsb.className = "px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-slate-200 text-slate-700 hover:bg-slate-300";
+      }
+    }
+
+    function limitTrusteeChecks(el) {
+      const checkedBoxes = document.querySelectorAll('input[name="ballot-trustee"]:checked');
+      if (checkedBoxes.length > 2) {
+        el.checked = false;
+        // User attempted to check more than 2
+        const feedback = document.getElementById('copy-feedback');
+        feedback.innerText = "Notice: You can only select up to 2 School Trustees on your ballot.";
+        feedback.classList.remove('hidden', 'text-emerald-700');
+        feedback.classList.add('text-amber-400');
+        setTimeout(() => {
+          feedback.classList.add('hidden');
+          feedback.classList.remove('text-amber-400');
+          feedback.classList.add('text-emerald-700');
+        }, 3000);
+      }
+    }
+
+    function updateBallotSlip() {
+      // 1. Mayor
+      const mayorRadio = document.querySelector('input[name="ballot-mayor"]:checked');
+      const slipMayor = document.getElementById('slip-mayor');
+      if (mayorRadio) {
+        slipMayor.textContent = mayorRadio.value;
+        slipMayor.className = "font-bold text-sm text-emerald-900 mt-0.5 py-1 px-2 bg-emerald-50 rounded border border-emerald-300";
+      } else {
+        slipMayor.textContent = "-- Not Selected --";
+        slipMayor.className = "font-bold text-sm text-slate-500 mt-0.5 py-1 px-2 bg-slate-100 rounded border border-slate-200";
+      }
+
+      // 2. Regional Councillor
+      const regionalRadio = document.querySelector('input[name="ballot-regional"]:checked');
+      const slipRegional = document.getElementById('slip-regional');
+      if (regionalRadio) {
+        slipRegional.textContent = regionalRadio.value;
+        slipRegional.className = "font-bold text-sm text-emerald-900 mt-0.5 py-1 px-2 bg-emerald-50 rounded border border-emerald-300";
+      } else {
+        slipRegional.textContent = "-- Not Selected --";
+        slipRegional.className = "font-bold text-sm text-slate-500 mt-0.5 py-1 px-2 bg-slate-100 rounded border border-slate-200";
+      }
+
+      // 3. Local Councillor
+      const localRadio = document.querySelector('input[name="ballot-local"]:checked');
+      const slipLocal = document.getElementById('slip-local');
+      if (localRadio) {
+        slipLocal.textContent = localRadio.value;
+        slipLocal.className = "font-bold text-sm text-emerald-900 mt-0.5 py-1 px-2 bg-emerald-50 rounded border border-emerald-300";
+      } else {
+        slipLocal.textContent = "-- Not Selected --";
+        slipLocal.className = "font-bold text-sm text-slate-500 mt-0.5 py-1 px-2 bg-slate-100 rounded border border-slate-200";
+      }
+
+      // 4. Trustees
+      const trusteeChecks = document.querySelectorAll('input[name="ballot-trustee"]:checked');
+      const slipTrustee = document.getElementById('slip-trustee');
+      if (trusteeChecks.length > 0) {
+        let html = '';
+        trusteeChecks.forEach(cb => {
+          html += `<div class="text-xs font-bold text-red-900 py-0.5">&bull; ${cb.value}</div>`;
+        });
+        slipTrustee.innerHTML = html;
+        slipTrustee.className = "font-bold text-sm text-red-900 mt-0.5 py-1 px-2 bg-red-50 rounded border border-red-300 space-y-1";
+      } else {
+        slipTrustee.innerHTML = "<div>-- Not Selected --</div>";
+        slipTrustee.className = "font-bold text-sm text-slate-500 mt-0.5 py-1 px-2 bg-slate-100 rounded border border-slate-200 space-y-1";
+      }
+    }
+
+    function autoPopulateProgressiveSlate() {
+      // Set Mayor to Carion Fenn
+      const mayorRadio = document.querySelector('input[name="ballot-mayor"][value*="Carion Fenn"]');
+      if (mayorRadio) mayorRadio.checked = true;
+
+      // Set Regional to Stephanie Ashton
+      const regRadio = document.querySelector('input[name="ballot-regional"][value*="Stephanie Ashton"]');
+      if (regRadio) regRadio.checked = true;
+
+      // Set Local to Muzammil Yazdani
+      const localRadio = document.querySelector('input[name="ballot-local"][value*="Muzammil Yazdani"]');
+      if (localRadio) localRadio.checked = true;
+
+      // Uncheck all trustees then check Macnamara and Hussain
+      document.querySelectorAll('input[name="ballot-trustee"]').forEach(cb => cb.checked = false);
+      const t1 = document.querySelector('input[name="ballot-trustee"][value*="Michelle Macnamara"]');
+      const t2 = document.querySelector('input[name="ballot-trustee"][value*="Zubair Hussain"]');
+      if (t1) t1.checked = true;
+      if (t2) t2.checked = true;
+
+      updateBallotSlip();
+
+      // Scroll smoothly to builder if invoked from top
+      const builderSection = document.getElementById('ballot-builder');
+      if (builderSection) {
+        builderSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function resetBallot() {
+      document.querySelectorAll('input[name="ballot-mayor"]').forEach(r => r.checked = false);
+      document.querySelectorAll('input[name="ballot-regional"]').forEach(r => r.checked = false);
+      document.querySelectorAll('input[name="ballot-local"]').forEach(r => r.checked = false);
+      document.querySelectorAll('input[name="ballot-trustee"]').forEach(cb => cb.checked = false);
+      updateBallotSlip();
+    }
+
+    function copyBallotText() {
+      const mayor = document.getElementById('slip-mayor').textContent.trim();
+      const regional = document.getElementById('slip-regional').textContent.trim();
+      const local = document.getElementById('slip-local').textContent.trim();
+      
+      const trusteeChecks = document.querySelectorAll('input[name="ballot-trustee"]:checked');
+      let trusteesList = [];
+      trusteeChecks.forEach(cb => trusteesList.push(cb.value));
+      const trusteeStr = trusteesList.length > 0 ? trusteesList.join(', ') : 'None selected';
+
+      const textToCopy = `MY AJAX WARD 3 BALLOT CHEAT SHEET (2026):\n` +
+        `• Mayor: ${mayor}\n` +
+        `• Ward 3 Regional Councillor: ${regional}\n` +
+        `• Ward 3 Local Councillor: ${local}\n` +
+        `• School Board Trustee (DDSB): ${trusteeStr}\n` +
+        `\nVoting Window: Oct 19 (10 AM) - Oct 26 (8 PM) via elections.ajax.ca`;
+
+      // Fallback-safe clipboard copy using hidden textarea
+      const tempArea = document.createElement('textarea');
+      tempArea.value = textToCopy;
+      tempArea.setAttribute('readonly', '');
+      tempArea.style.position = 'absolute';
+      tempArea.style.left = '-9999px';
+      document.body.appendChild(tempArea);
+      tempArea.select();
+      
+      try {
+        document.execCommand('copy');
+        const feedback = document.getElementById('copy-feedback');
+        feedback.innerText = "✓ Slate choices copied to clipboard!";
+        feedback.classList.remove('hidden');
+        setTimeout(() => feedback.classList.add('hidden'), 3500);
+      } catch (err) {
+        console.error('Copy error', err);
+      } finally {
+        document.body.removeChild(tempArea);
+      }
+    }
+
+    // Auto-initialize slate on first page load
+    window.addEventListener('DOMContentLoaded', () => {
+      autoPopulateProgressiveSlate();
+    });
+  </script>
+</body>
+</html>
